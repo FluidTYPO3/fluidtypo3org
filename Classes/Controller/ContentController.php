@@ -89,7 +89,8 @@ class ContentController extends AbstractFluxController {
 		$sorted = array();
 		foreach ($files as $filePathAndFilename) {
 			$baseName = substr($filePathAndFilename, $prefixLength);
-			$dateStamp = substr($baseName, 0, -4);
+			$dateStamp = substr($baseName, strrpos($baseName, '_') + 1);
+			$dateStamp = substr($dateStamp, 0, -4);
 			$year = substr($dateStamp, 0, 4);
 			$month = substr($dateStamp, 4, 2);
 			$sorted[$year][$month][$baseName] = $year . '/' . $month . '/' . substr($dateStamp, -2);
@@ -107,6 +108,7 @@ class ContentController extends AbstractFluxController {
 		foreach (glob($prefix . $date . '*') as $file) {
 			$baseName = substr($file, $prefixLength);
 			$dateStamp = substr($baseName, strrpos($baseName, '_') + 1);
+			$dateStamp = substr($dateStamp, 0, -4);
 			$lines = file($file);
 			foreach ($lines as $index => $line) {
 				if (9 === strpos($line, '] *** ') || 9 === strpos($line, '] -') || FALSE !== strpos($line, '<FluidTYPO3>')) {
