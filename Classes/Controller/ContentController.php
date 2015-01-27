@@ -106,7 +106,7 @@ class ContentController extends AbstractFluxController {
 		$url = GeneralUtility::getIndpEnv('REQUEST_URI');
 		foreach (glob($prefix . $date . '*') as $file) {
 			$baseName = substr($file, $prefixLength);
-			$dateStamp = substr($baseName, 0, -4);
+			$dateStamp = substr($baseName, strrpos($baseName, '_') + 1);
 			$lines = file($file);
 			foreach ($lines as $index => $line) {
 				if (9 === strpos($line, '] *** ') || 9 === strpos($line, '] -') || FALSE !== strpos($line, '<FluidTYPO3>')) {
