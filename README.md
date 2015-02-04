@@ -1,5 +1,7 @@
-FluidTYPO3.org: Fluid Powered TYPO3 Official Site Provider Extension
-======================
+<img src="https://fluidtypo3.org/logo.svgz" width="100%" />
+
+Fluid Powered TYPO3 Official Site Provider Extension
+====================================================
 
 > This is the provider extension used for fluidtypo3.org to provide templates and configuration.
 > Actually it can be used as a best-practice example on how to use our collection of extensions to
