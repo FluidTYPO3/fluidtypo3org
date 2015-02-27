@@ -119,3 +119,40 @@ plugin.tx_solr {
 	}
 }
 
+[globalVar = TSFE:type = 9818]
+config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = none
+    admPanel = 0
+    metaCharset = utf-8
+    additionalHeaders = Content-Type:text/xml;charset=utf-8
+    disablePrefixComment = 1
+}
+
+pageNewsRSS = PAGE
+pageNewsRSS {
+    typeNum = 9818
+    10 < tt_content.list.20.news_pi1
+    10 {
+            switchableControllerActions {
+                    News {
+                            1 = list
+                    }
+            }
+            settings < plugin.tx_news.settings
+            settings {
+                    limit = 30
+                    detailPid = 59
+                    startingpoint = 79
+                    format = xml
+            }
+    }
+}
+[global]
+plugin.tx_fluidcontentcore.settings.container.classNames = container,alert,alert-info,alert-success,alert-danger,alert-warning,pull-left,pull-right
+plugin.tx_news.settings.list.rss.channel.title = Fluid Powered TYPO3 News Feed
+plugin.tx_news.settings.list.rss.channel.description = News from the team behind Flux, Fluidpages, Fluidcontent, VHS and others
+plugin.tx_news.settings.list.rss.channel.link = https://fluidtypo3.org
+
+
+
