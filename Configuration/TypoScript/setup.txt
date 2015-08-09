@@ -22,8 +22,8 @@ plugin.tx_fluidcontentcore.view.layoutRootPath = EXT:fluidtypo3org/Resources/Pri
 
 plugin.tx_news.view {
 	templateRootPaths.500 = EXT:fluidtypo3org/Resources/Private/Templates/
-	partialRootPath.500 = EXT:fluidtypo3org/Resources/Private/Partials/
-	layoutRootPath.500 = EXT:fluidtypo3org/Resources/Private/Layouts/
+	partialRootPaths.500 = EXT:fluidtypo3org/Resources/Private/Partials/
+	layoutRootPaths.500 = EXT:fluidtypo3org/Resources/Private/Layouts/
 }
 
 plugin.tx_vhs.settings.asset {
