@@ -1,7 +1,7 @@
 plugin.tx_fluidtypo3org.view {
-	templateRootPath = EXT:fluidtypo3org/Resources/Private/Templates/
-	partialRootPath = EXT:fluidtypo3org/Resources/Private/Partials/
-	layoutRootPath = EXT:fluidtypo3org/Resources/Private/Layouts/
+	templateRootPaths.0 = EXT:fluidtypo3org/Resources/Private/Templates/
+	partialRootPaths.0 = EXT:fluidtypo3org/Resources/Private/Partials/
+	layoutRootPaths.0 = EXT:fluidtypo3org/Resources/Private/Layouts/
 }
 
 plugin.tx_fluidtypo3org.settings {
@@ -20,10 +20,10 @@ plugin.tx_fluidtypo3org.settings {
 
 plugin.tx_fluidcontentcore.view.layoutRootPath = EXT:fluidtypo3org/Resources/Private/Layouts/
 
-plugin.tx_news.view.overlays.fluidtypo3org {
-	templateRootPath = EXT:fluidtypo3org/Resources/Private/Templates/
-	partialRootPath = EXT:fluidtypo3org/Resources/Private/Partials/
-	layoutRootPath = EXT:fluidtypo3org/Resources/Private/Layouts/
+plugin.tx_news.view {
+	templateRootPaths.500 = EXT:fluidtypo3org/Resources/Private/Templates/
+	partialRootPath.500 = EXT:fluidtypo3org/Resources/Private/Partials/
+	layoutRootPath.500 = EXT:fluidtypo3org/Resources/Private/Layouts/
 }
 
 plugin.tx_vhs.settings.asset {
