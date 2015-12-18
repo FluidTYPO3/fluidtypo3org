@@ -73,7 +73,7 @@ class ViewHelperIndexer extends \Tx_Solr_IndexQueue_Indexer {
 		$document = $this->getBaseDocument($item, $record);
 		$document->setField('title', 'ViewHelper schema for ' . $extensionKey . ' version ' . $extensionVersion);
 		$document->setField('content', 'Download of XSD schema file for extension "' . $extensionKey . '" version ' . $extensionVersion);
-		$document->setField('url', $filename);
+		$document->setField('url', substr($filename, strlen(PATH_site));
 		$document->setField('id', $id);
 		$document->setField('extension', $extensionKey);
 		$document->setField('version', $extensionVersion);
