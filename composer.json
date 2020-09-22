@@ -1,0 +1,33 @@
+{
+    "name": "fluidtypo3/fluidtypo3org",
+    "description": "Site provider extension for FluidTYPO3",
+    "type": "typo3-cms-extension",
+    "homepage": "https://fluidtypo3.org",
+    "license": "GPL-2.0+",
+    "autoload": {
+        "psr-4": {
+            "FluidTYPO3\\Fluidtypo3org\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FluidTYPO3\\Fluidtypo3org\\Tests\\": "Tests/"
+        }
+    },
+    "require": {
+        "php": "^7.1.0",
+        "fluidtypo3/flux": "^9.4",
+        "fluidtypo3/vhs": "^6",
+        "typo3/cms-core": "^8.7 || ^9 || ^10 || dev-master",
+        "typo3/cms-fluid": "^8.7 || ^9 || ^10 || dev-master",
+        "typo3/cms-backend": "^8.7 || ^9 || ^10 || dev-master",
+        "typo3/cms-frontend": "^8.7 || ^9 || ^10 || dev-master",
+        "typo3/cms-recordlist": "^8.7 || ^9 || ^10 || dev-master"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "fluidtypo3org"
+        }
+    },
+    "non-feature-branches": ["development", "staging"]
+}
