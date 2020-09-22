@@ -2,6 +2,7 @@
 namespace FluidTYPO3\Fluidtypo3org\Controller;
 
 use FluidTYPO3\Flux\Controller\AbstractFluxController;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\CommandUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -243,7 +244,9 @@ class ContentController extends AbstractFluxController {
 				$linkNode->setAttribute('name', substr($linkNode->getAttribute('name'), 13));
 			} elseif (TRUE === $isRelativeMarkdownLink) {
 				$lookupClause = "pi_flexform LIKE '%" . trim($url, './') . "</value>%'";
-				$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('pid', 'tt_content', $lookupClause);
+				$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+				$queryBuilder->select('pid')->from('tt_content')->where($lookupClause);
+				$record = $queryBuilder->execute()->fetch();
 				if (FALSE !== $record) {
 					$link = $this->uriBuilder->reset()->setTargetPageUid($record['pid'])->build();
 					$linkNode->setAttribute('href', $link);
