@@ -29,7 +29,7 @@
 			<div class="panel-body">
 				<h3>{feed:item.title()}</h3>
 				<hr />
-				{feed:item.content() -> v:format.replace(substring: '<pre><code>', replacement: '<pre class="prettyprint linenums:1"><code>')}
+				{feed:item.content() -> f:format.raw() -> v:format.replace(substring: '<pre><code>', replacement: '<pre class="prettyprint linenums:1"><code>') -> f:format.raw()}
 			</div>
 		</div>
 	</div>
