@@ -143,7 +143,7 @@ class ContentController extends AbstractFluxController {
 			CommandUtility::exec($command . ' --export ' . $filePathAndFilename, $output, $code);
 		}
 		$document = new \DOMDocument();
-		$document->load($convertedPathAndFilename, LIBXML_NOERROR);
+		$document->loadHTMLFile($convertedPathAndFilename, LIBXML_NOERROR);
 		$this->decorateCodeBlocks($document);
 		$this->decorateTableTags($document);
 		$this->changeBlockquoteToInlineAlerts($document);
