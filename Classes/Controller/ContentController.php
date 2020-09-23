@@ -2,11 +2,10 @@
 namespace FluidTYPO3\Fluidtypo3org\Controller;
 
 use FluidTYPO3\Flux\Controller\AbstractFluxController;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\CommandUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class ContentController extends AbstractFluxController {
 
@@ -14,7 +13,7 @@ class ContentController extends AbstractFluxController {
 	 * @return void
 	 */
 	public function contributorsAction() {
-		$cachedContributorsFile = GeneralUtility::getFileAbsFileName('typo3temp/contributors.tmp');
+		$cachedContributorsFile = Environment::getProjectPath() . '/contributors.tmp';
 		$row = $this->getRecord();
 		$fieldName = $this->provider->getFieldName($row);
 		$blacklist = GeneralUtility::trimExplode(',', $this->settings['blacklist']);
@@ -33,7 +32,7 @@ class ContentController extends AbstractFluxController {
 			$repositories = GeneralUtility::trimExplode(',', $this->settings['contributorRepositories']);
 			$authors = array();
 			foreach ($repositories as $repository) {
-				$folder = GeneralUtility::getFileAbsFileName('typo3conf/ext/' . $repository);
+				$folder = Environment::getProjectPath() . 'repositories/' . $repository;
 				$command = CommandUtility::getCommand('git');
 				$lines = array();
 				CommandUtility::exec('cd ' . $folder . ' && ' . $command . ' log', $lines);
