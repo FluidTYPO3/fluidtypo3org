@@ -149,7 +149,6 @@ class ContentController extends AbstractFluxController {
 		$this->changeBlockquoteToInlineAlerts($document);
 		$this->retargetRelativeMarkdownFileLinks($document);
 		$this->retargetImages($document);
-		$this->retargetImages($document);
 		foreach ($document->getElementsByTagName('div') as $element) {
 			if ('markdown-body entry-content' === $element->getAttribute('class')) {
 				$html = $document->saveXML($element);
