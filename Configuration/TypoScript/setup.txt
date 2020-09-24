@@ -86,6 +86,10 @@ plugin.tx_solr {
 			label = Extension key
 			field = extension
 		}
+		pageType {
+			label = Page type
+			field = pageType_stringS
+		}
 		version {
 			label = Extension version
 			field = version
