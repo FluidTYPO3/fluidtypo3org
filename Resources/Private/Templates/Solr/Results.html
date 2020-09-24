@@ -1,216 +1,124 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Template for the search results view for EXT:solr</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers/">
 
-<!-- ###SOLR_SEARCH### begin -->
+<f:layout name="Split"/>
 
-<div id="tx-solr-search">
+<f:section name="content">
+	<div id="tx-solr-search">
 
-
-	<!-- ###SOLR_SEARCH_ERRORS### begin -->
-
-	<div class="tx-solr-search-form-errors">
-		###LLL:error_errors###
-		<!-- ###LOOP:ERRORS### begin -->
-		<ul class="tx-solr-search-form-error-list">
-			<!-- ###LOOP_CONTENT### -->
-			<li>
-				###ERROR.MESSAGE###
-			</li>
-			<!-- ###LOOP_CONTENT### -->
-		</ul>
-		<!-- ###LOOP:ERRORS### end -->
-	</div>
-
-	<!-- ###SOLR_SEARCH_ERRORS### end -->
-
-
-
-	<!-- ###SOLR_SEARCH_RESULTS### begin -->
-
-	<div id="tx-solr-pagination">
-		<!-- ###SOLR_SEARCH_RESULTSPERPAGESWITCH### begin -->
-		<div id="tx-solr-pagination-results-per-page">
-			<form action="###FORM.ACTION###" method="post">
-				###LLL:results_per_page###<select onchange="this.form.submit()" name="###TX_SOLR.PREFIX###[resultsPerPage]">
-				<!-- ###LOOP:OPTIONS### begin -->
-				<!-- ###LOOP_CONTENT### -->
-				<option value="###OPTION.VALUE###" ###OPTION.SELECTED###>###OPTION.VALUE###</option>
-				<!-- ###LOOP_CONTENT### -->
-				<!-- ###LOOP:OPTIONS### end -->
-			</select>
-			</form>
-		</div>
-		<!-- ###SOLR_SEARCH_RESULTSPERPAGESWITCH### end -->
-
-		###RESULTS.PAGEBROWSER###
-	</div>
-
-	<ol start="###RESULTS.OFFSET###" class="results-list list-unstyled">
-		<!-- ###LOOP:RESULT_DOCUMENTS### begin -->
-		<!-- ###LOOP_CONTENT### -->
-		<li class="results-entry###IF:###RESULT_DOCUMENT.isElevated###|==|1|class### results-elevated###IF:###RESULT_DOCUMENT.isElevated###|==|1|class###">
-			<!--
-			Score: ###RESULT_DOCUMENT.SCORE###
-			Document ID:  ###RESULT_DOCUMENT.ID###
-			-->
-			<!-- ###IF:###RESULT_DOCUMENT.isElevated###|==|1|label### begin -->
-			<div class="results-elevated-label">###LLL:sponsored###</div>
-			<!-- ###IF:###RESULT_DOCUMENT.isElevated###|==|1|label### end -->
-			<h5 class="results-topic"><a href="###RESULT_DOCUMENT.URL###">###RESULT_DOCUMENT.TITLE###</a></h5>
-			<div class="results-teaser">
-				<div class="relevance">
-					<div class="relevance-label">###LLL:relevance###: </div>
-					<div class="relevance-bar">###RELEVANCE_BAR:###RESULT_DOCUMENT######</div>
-					<div class="relevance-percent">###RELEVANCE:###RESULT_DOCUMENT######%</div>
-				</div>
-
-				<p class="result-content">###RESULT_DOCUMENT.CONTENT###</p>
-
-				<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_solr_file### begin -->
-				<p>
-					###LLL:file_mimetype###: ###RESULT_DOCUMENT.fileMimeType###<br />
-					###LLL:file_referenced###: ###LINK:###RESULT_DOCUMENT.fileReferenceTitle###|###RESULT_DOCUMENT.fileReferenceUrl######
-				</p>
-				<!-- ###IF:###RESULT_DOCUMENT.TYPE###|==|tx_solr_file### end -->
-
-				###RESULT_DOCUMENT.SCORE_ANALYSIS###
+		<div class="row">
+			<div class="tx-solr-search-form col-lg-8">
+				<f:render partial="Search/Form" section="Form" arguments="{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}" />
 			</div>
-		</li>
-		<!-- ###LOOP_CONTENT### -->
-		<!-- ###LOOP:RESULT_DOCUMENTS### end -->
-	</ol>
 
-	###RESULTS.PAGEBROWSER###
-
-	###RESULTS.FOUND###
-
-	<!-- ###SOLR_SEARCH_RESULTS### end -->
-
-
-
-	<!-- ###SOLR_SEARCH_NO_RESULTS### begin -->
-	<div class="tx-solr-search-no-results">
-		###NO_RESULTS.NOTHING_FOUND###
-		###NO_RESULTS.SUGGESTION###
-	</div>
-	<!-- ###SOLR_SEARCH_NO_RESULTS### end -->
-</div>
-
-<div id="tx-solr-search-functions">
-
-	<!-- ###SOLR_SEARCH_SORTING### begin -->
-	<div id="tx-solr-sorting" class="secondaryContentSection">
-		<h3>###LLL:sorting_sortBy###</h3>
-		<ul class="list-unstyled">
-			<!-- ###LOOP:SORT### begin -->
-			<!-- ###LOOP_CONTENT### -->
-			<li>
-				###SORT_INDICATOR:###SORT.CURRENT_DIRECTION###### ###SORT.LINK###
-			</li>
-			<!-- ###LOOP_CONTENT### -->
-			<!-- ###LOOP:SORT### end -->
-		</ul>
-	</div>
-
-	<!-- ###SOLR_SEARCH_SORTING### end -->
-
-
-	<!-- ###SOLR_SEARCH_FACETING### begin -->
-	<div id="tx-solr-faceting">
-		<!-- ###USED_FACETS### begin -->
-		<div id="tx-solr-facets-in-use" class="secondaryContentSection">
-			<h3>###LLL:faceting_resultsNarrowedBy###</h3>
-			<ul class="list-unstyled">
-				<!-- ###LOOP:FACETS_IN_USE### begin -->
-				<!-- ###LOOP_CONTENT### -->
-				<li>
-					- <a href="###REMOVE_FACET.url###">###REMOVE_FACET.text###</a>
-				</li>
-				<!-- ###LOOP_CONTENT### -->
-				<!-- ###LOOP:FACETS_IN_USE### end -->
-
-				<li class="facets-remove-all">
-					<a href="###REMOVE_ALL_FACETS.url###">###REMOVE_ALL_FACETS.text###</a>
-				</li>
-			</ul>
+			<div class="tx-solr-search-form col-lg-2 hidden-xs">&nbsp;</div>
+			<div class="col-lg-2 hidden-xs">
+				<f:if condition="{resultSet.hasSearched}">
+					<f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchSorting}">
+						<f:render partial="Result/Sorting" section="Sorting" arguments="{resultSet:resultSet}" />
+					</f:if>
+				</f:if>
+			</div>
 		</div>
-		<!-- ###USED_FACETS### end -->
 
-		<!-- ###AVAILABLE_FACETS### begin -->
-		<div id="tx-solr-facets-available" class="secondaryContentSection">
-			<h3>###LLL:faceting_narrowSearch###</h3>
-			<ul class="facets list-unstyled">
-				<!-- ###SINGLE_FACET### begin -->
-				<li class="facet facet-###FACET.name### facet-type-###FACET.type###">
-					<h4>###FACET.label###</h4>
-					<ul class="facet-option-list">
-						<!-- ###SINGLE_FACET_OPTION### begin -->
-						<!-- ###LOOP:FACET_LINKS### begin -->
-						<!-- ###LOOP_CONTENT### -->
-						<li class="facet-option ###FACET_LINK.HIDDEN###">
-							+ ###FACET_LINK.LINK### <span class="facet-result-count">(###FACET_LINK.COUNT###)</span>
-						</li>
-						<!-- ###LOOP_CONTENT### -->
-						<!-- ###LOOP:FACET_LINKS### end -->
-						<!-- ###SINGLE_FACET_OPTION### end -->
-						###FACET.showAllLink###
-					</ul>
-				</li>
-				<!-- ###SINGLE_FACET### end -->
-			</ul>
+		<div class="row">
+			<div class="col-md-12">
+				<f:render partial="Result/FacetsActive" section="FacetsActive" arguments="{resultSet:resultSet}" />
+			</div>
 		</div>
-		<!-- ###AVAILABLE_FACETS### end -->
+		<div class="row">
+			<div class="hidden-xs col-md-12 query-debug">
+				<s:debug.query />
+			</div>
+		</div>
+
+		<div class="row searchinfo">
+			<div class="col-md-12">
+
+				<f:if condition="{resultSet.isAutoCorrected}">
+					<f:then>
+					<span class="searched-for">
+						<s:translate key="no_results_nothing_found" arguments="{0: resultSet.initialQueryString}">Nothing found for "%s".</s:translate>
+						<s:translate key="no_results_showing_results_suggestion" arguments="{0: resultSet.correctedQueryString}">Showing results for &quot;@suggestedWord&quot;.</s:translate>
+					</span>
+					</f:then>
+
+					<f:else>
+						<f:if condition="{resultSet.usedQuery.queryStringContainer.keywordsCleaned}">
+						<span class="searched-for">
+							<s:translate key="results_searched_for" arguments="{0: resultSet.usedQuery.queryStringContainer.keywordsCleaned}">Searched for "%s"</s:translate>
+						</span>
+						</f:if>
+					</f:else>
+				</f:if>
+
+				<f:if condition="{resultSet.hasSpellCheckingSuggestions}">
+					<f:then>
+						<s:translate key="didYouMean">Did you mean</s:translate>
+						<f:for each="{resultSet.spellCheckingSuggestions}" as="suggestion">
+							<f:link.page additionalParams="{q:suggestion.suggestion}" noCacheHash="1">{suggestion.suggestion}</f:link.page>
+						</f:for> ?
+					</f:then>
+				</f:if>
+
+				<f:if condition="{resultSet.usedSearch.numberOfResults}">
+					<span class="result-found">
+						<f:if condition="{resultSet.usedSearch.numberOfResults} == 1">
+							<f:then>
+								<s:translate key="results_found.singular" arguments="{0:resultSet.usedSearch.queryTime}">Found 1 result in %d seconds</s:translate>
+							</f:then>
+							<f:else>
+								<s:translate key="results_found" arguments="{0:resultSet.usedSearch.numberOfResults, 1: resultSet.usedSearch.queryTime}">Found %d results in %d seconds</s:translate>
+							</f:else>
+						</f:if>
+					</span>
+					<span class="result-range">
+						<s:pageBrowserRange>
+							<s:translate key="results_range" arguments="{0:from, 1: to, 2: total}">Results %d until %d of %d</s:translate>
+						</s:pageBrowserRange>
+					</span>
+				</f:if>
+				<f:if condition="{resultSet.usedSearch.numberOfResults}">
+					<f:render partial="Result/PerPage" section="PerPage" arguments="{resultSet: resultSet}" />
+				</f:if>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<f:if condition="{resultSet.hasSearched}">
+					<s:widget.resultPaginate resultSet="{resultSet}">
+						<div data-start="{pagination.resultCountStart}" class="results-list list-group">
+							<f:for each="{documents}" as="document">
+								<f:render partial="Result/Document" section="Document" arguments="{resultSet:resultSet, document:document}" />
+							</f:for>
+						</div>
+					</s:widget.resultPaginate>
+				</f:if>
+			</div>
+		</div>
+
 	</div>
-	<!-- ###SOLR_SEARCH_FACETING### end -->
+</f:section>
 
+<f:section name="extra">
+	<div id="tx-solr-search-functions">
+		<f:if condition="{resultSet.hasSearched}">
+			<f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchFaceting}">
+				<f:render partial="Result/Facets" section="Facets" arguments="{resultSet:resultSet}" />
+			</f:if>
+		</f:if>
 
-	<!-- ###SOLR_SEARCH_LASTSEARCHES### end -->
-	<div id="tx-solr-lastsearches" class="secondaryContentSection">
-		<h3>###LLL:lastSearches###</h3>
-		<ul>
-			<!-- ###LOOP:LASTSEARCHES### begin -->
-			<!-- ###LOOP_CONTENT### -->
-			<li>
-				###LINK:###LASTSEARCH.Q###|###LASTSEARCH.PID###|###LASTSEARCH.PARAMETERS###|0|rel="nofollow"###
-			</li>
-			<!-- ###LOOP_CONTENT### -->
-			<!-- ###LOOP:LASTSEARCHES### end -->
-		</ul>
+		<div class="hidden-xs">
+			<f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchLastSearches}">
+				<f:render partial="Search/LastSearches" section="LastSearches" arguments="{resultSet:resultSet}" />
+			</f:if>
+		</div>
+		<div class="hidden-xs">
+			<f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchFrequentSearches}">
+				<f:render partial="Search/FrequentlySearched" section="FrequentlySearched" />
+			</f:if>
+		</div>
 	</div>
-	<!-- ###SOLR_SEARCH_LASTSEARCHES### end -->
-
-	<!-- ###SOLR_SEARCH_FREQUENTSEARCHES### begin -->
-	<div id="tx-solr-frequent-searches" class="secondaryContentSection">
-		<h3>###LLL:frequentSearches###</h3>
-		<ul>
-			<!-- ###LOOP:FREQUENTSEARCHES### begin -->
-			<!-- ###LOOP_CONTENT### -->
-			<li class="###TERM.CLASS###">###LINK:###TERM.TERM###|###TERM.PID###|###TERM.PARAMETERS###|0|rel="nofollow"###</li>
-			<!-- ###LOOP_CONTENT### -->
-			<!-- ###LOOP:FREQUENTSEARCHES### end -->
-		</ul>
-	</div>
-	<!-- ###SOLR_SEARCH_FREQUENTSEARCHES### end -->
-
-</div>
-
-<!-- ###SOLR_SEARCH### end -->
-
-
-
-<!-- ###SOLR_SEARCH_UNAVAILABLE### begin -->
-###LLL:searchUnavailable###
-<!-- ###SOLR_SEARCH_UNAVAILABLE### end -->
-
-<!-- ###SOLR_SEARCH_ERROR### begin -->
-###LLL:searchFailed###
-<!-- ###SOLR_SEARCH_ERROR### end -->
-
-</body>
-</html>
+</f:section>
