@@ -10,7 +10,7 @@
 			<small class="pull-right">
 			</small>
 		</h4>
-		{feed:item.content() -> v:format.replace(substring: '<pre><code>', replacement: '<pre class="prettyprint linenums:1"><code>')}
+		{feed:item.content() -> f:format.raw() -> v:format.replace(substring: '<pre><code>', replacement: '<pre class="prettyprint linenums:1"><code>') -> f:format.raw()}
 	</div>
 	<div class="pull-right">
 		<i class="icon fa fa-link"></i> <a href="{feed:item.link()}">{feed:item.link() ->
