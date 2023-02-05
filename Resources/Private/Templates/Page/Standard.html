@@ -15,7 +15,7 @@
 				<f:variable name="pageUid" value="{settings.documentationRootPageUid -> v:iterator.explode(glue: '=') -> v:iterator.last()}" />
 				<div class="col-md-3 col-xs-4 col-sm-4">
 					<h4>{v:page.info(pageUid: pageUid, field: 'title')}</h4>
-					<v:page.menu pageUid="{pageUid}" levels="3" expandAll="TRUE" class="leftmenu" />
+					<v:menu pageUid="{pageUid}" levels="3" expandAll="TRUE" class="leftmenu" />
 				</div>
 				<v:variable.set name="contentWidths" value="{0: 9, 1: 8, 2: 8}" />
 			</f:if>

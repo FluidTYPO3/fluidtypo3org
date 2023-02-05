@@ -1,7 +1,7 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <div id="top-nav">
 	<div class="container">
-		<v:page.menu as="menu">
+		<v:menu as="menu">
 			<ul>
 				<f:for each="{menu}" as="menuItem" iteration="iteration">
 					<li class="{menuItem.class}">
@@ -12,7 +12,7 @@
 					</li>
 				</f:for>
 			</ul>
-		</v:page.menu>
+		</v:menu>
 		{v:page.info(field: 'uid') -> v:variable.set(name: 'pageUid')}
 		<ul class="pull-right">
 			<f:if condition="{settings.donatePageUid}">
