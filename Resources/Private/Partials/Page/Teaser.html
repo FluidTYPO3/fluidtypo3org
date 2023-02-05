@@ -9,11 +9,11 @@
 						<canvas class="logo sub"></canvas>
 					</span>
 				</a>
-				<v:page.menu pageUid="{settings.documentationRootPageUid}">
+				<v:menu pageUid="{settings.documentationRootPageUid}">
 					{rootLine -> f:count() -> v:variable.set(name: 'numberOfSegments')}
 					{f:if(condition: '{rootLine -> f:count()} > 4', then: 3, else: 2) -> v:variable.set(name: 'slicePoint')}
 					<h1>{rootLine -> v:iterator.reverse() -> v:iterator.slice(start: '-{slicePoint}') -> v:iterator.extract(key: 'title') -> v:iterator.implode(glue: ' &middot; ') -> v:or(alternative: page.title)}</h1>
-				</v:page.menu>
+				</v:menu>
 				{menuHtml -> f:format.raw()}
 			</div>
 		</div>
