@@ -1,5 +1,5 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
-{v:page.menu(entryLevel: 1, id: 'submenu') -> v:variable.set(name: 'menuHtml')}
+{v:menu(entryLevel: 1, id: 'submenu') -> v:variable.set(name: 'menuHtml')}
 <f:if condition="{menuHtml}">
 	<f:then>
 		<div id="teaser">
