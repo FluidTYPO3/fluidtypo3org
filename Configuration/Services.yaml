@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  FluidTYPO3\Fluidtypo3org\:
+    resource: '../Classes/*'
+
+  FluidTYPO3\Fluidtypo3org\Controller\ContentController:
+    public: true
