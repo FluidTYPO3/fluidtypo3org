@@ -4,7 +4,7 @@
 <f:for each="{items}" as="item" iteration="iteration">
 	{item.data.child -> v:iterator.first() -> v:iterator.extract(key: 'author', recursive: 0) -> v:iterator.first() -> v:iterator.extract(key: 'child', recursive: 0) -> v:iterator.first() -> v:variable.set(name: 'author')}
 	{item.data.child -> v:iterator.first() -> v:iterator.extract(key: 'category', recursive: 0) -> v:variable.set(name: 'categories')}
-	<div class="tab-pane{f:if(condition: iteration.isFirst, then: ' active')}" id="{feed:item.title() -> v:format.url.sanitizeString()}">
+	<div class="tab-pane{f:if(condition: iteration.isFirst, then: ' active')}" id="{feed:item.title() -> v:format.sanitizeString()}">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="pull-right">
