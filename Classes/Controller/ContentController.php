@@ -33,7 +33,7 @@ class ContentController extends AbstractFluxController {
 			$authors = array();
 			foreach ($repositories as $repository) {
 				$folder = Environment::getProjectPath() . 'repositories/' . $repository;
-				$command = CommandUtility::getCommand('git');
+				$command = 'git';
 				$lines = array();
 				CommandUtility::exec('cd ' . $folder . ' && ' . $command . ' log', $lines);
 				foreach ($lines as $line) {
@@ -136,7 +136,7 @@ class ContentController extends AbstractFluxController {
 		$filePathAndFilename = GeneralUtility::getFileAbsFileName($file);
 		$convertedPathAndFilename = substr($filePathAndFilename, 0, -3) . '.html';
 		if (FALSE === file_exists($convertedPathAndFilename) || filemtime($convertedPathAndFilename) < filemtime($filePathAndFilename)) {
-			$command = CommandUtility::getCommand('grip');
+			$command = 'grip';
 			$output = NULL;
 			$code = 0;
 			CommandUtility::exec($command . ' --export ' . $filePathAndFilename, $output, $code);
