@@ -122,7 +122,6 @@ class ContentController extends AbstractFluxController {
 			$current[$dateStamp] = '<li>' . implode('</li><li>', $lines) . '</li>';
 		}
 		$this->view->assign('current', $current);
-		$this->view->assign('last', implode(LF, $output));
 		$this->view->assign('files', $sorted);
 		$this->view->assign('selectedDateStamp', $date);
 
