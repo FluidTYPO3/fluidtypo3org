@@ -6,7 +6,7 @@
 		<f:for each="{items}" as="item" iteration="iteration">
 			{item.data.child -> v:iterator.first() -> v:iterator.extract(key: 'author', recursive: 0) -> v:iterator.first() -> v:iterator.extract(key: 'child', recursive: 0) -> v:iterator.first() -> v:variable.set(name: 'author')}
 			<li class="{f:if(condition: iteration.isFirst, then: 'active')}">
-				<a href="#{feed:item.title() -> v:format.url.sanitizeString()}" data-toggle="tab" title="{feed:item.title()}">
+				<a href="#{feed:item.title() -> v:format.sanitizeString()}" data-toggle="tab" title="{feed:item.title()}">
 					{feed:item.title()}<br />
 					<small class="muted"><f:format.date format="Y-m-d">@{item.data.date.parsed}</f:format.date> by {v:variable.get(name: 'author.name.0.data')}</small>
 				</a>
@@ -17,7 +17,7 @@
 		<f:for each="{items}" as="item" iteration="iteration">
 			{item.data.child -> v:iterator.first() -> v:iterator.extract(key: 'author', recursive: 0) -> v:iterator.first() -> v:iterator.extract(key: 'child', recursive: 0) -> v:iterator.first() -> v:variable.set(name: 'author')}
 			{item.data.child -> v:iterator.first() -> v:iterator.extract(key: 'category', recursive: 0) -> v:variable.set(name: 'categories')}
-			<div class="tab-pane{f:if(condition: iteration.isFirst, then: ' active')}" id="{feed:item.title() -> v:format.url.sanitizeString()}">
+			<div class="tab-pane{f:if(condition: iteration.isFirst, then: ' active')}" id="{feed:item.title() -> v:format.sanitizeString()}">
 				<div class="nav navbar">
 					<div class="navbar-inner">
 						<div class="container pull-right">
