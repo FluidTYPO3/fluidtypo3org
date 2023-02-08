@@ -57,7 +57,7 @@
 					<f:then>
 						<s:translate key="didYouMean">Did you mean</s:translate>
 						<f:for each="{resultSet.spellCheckingSuggestions}" as="suggestion">
-							<f:link.page additionalParams="{q:suggestion.suggestion}" noCacheHash="1">{suggestion.suggestion}</f:link.page>
+							<f:link.page additionalParams="{q:suggestion.suggestion}">{suggestion.suggestion}</f:link.page>
 						</f:for> ?
 					</f:then>
 				</f:if>
@@ -88,13 +88,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<f:if condition="{resultSet.hasSearched}">
-					<s:widget.resultPaginate resultSet="{resultSet}">
-						<div data-start="{pagination.resultCountStart}" class="results-list list-group">
-							<f:for each="{documents}" as="document">
-								<f:render partial="Result/Document" section="Document" arguments="{resultSet:resultSet, document:document}" />
-							</f:for>
-						</div>
-					</s:widget.resultPaginate>
+					<div data-start="{pagination.resultCountStart}" class="results-list list-group">
+						<f:for each="{documents}" as="document">
+							<f:render partial="Result/Document" section="Document" arguments="{resultSet:resultSet, document:document}" />
+						</f:for>
+					</div>
 				</f:if>
 			</div>
 		</div>
